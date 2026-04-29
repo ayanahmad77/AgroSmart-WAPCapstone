@@ -112,41 +112,6 @@ agrosmart/
 
 ---
 
-## 🚀 Getting Started
-
-### Prerequisites
-
-- **Node.js** v18+ and **npm** v9+
-- An **OpenWeatherMap API key** — [Get one free here](https://openweathermap.org/appid)
-
-### Installation
-
-```bash
-# Clone the repository
-git clone https://github.com/ayanahmad77/AgroSmart-WAPCapstone.git
-cd AgroSmart-WAPCapstone
-
-# Install dependencies
-npm install
-
-# Create environment file
-echo "VITE_WEATHER_API_KEY=your_api_key_here" > .env
-
-# Start the development server
-npm run dev
-```
-
-The app will be available at `http://localhost:5173`
-
-### Build for Production
-
-```bash
-npm run build    # Output in /dist
-npm run preview  # Preview production build locally
-```
-
----
-
 ## 📖 How to Use
 
 1. **Open the Dashboard** — Click "Get Started" or navigate to `/dashboard`
@@ -174,21 +139,6 @@ The codebase has been audited for vulnerabilities and hardened with:
 - ✅ **Accessibility** — ARIA labels on interactive elements
 - ✅ **SEO optimized** — Proper meta tags, semantic HTML, heading hierarchy
 - ✅ **SPA deploy ready** — Includes `_redirects` (Netlify) and `vercel.json` (Vercel) configs
-
----
-
-## 🌐 Deployment
-
-### Netlify
-The `public/_redirects` file is already configured. Just connect your GitHub repo to Netlify:
-- **Build command**: `npm run build`
-- **Publish directory**: `dist`
-
-### Vercel
-The `vercel.json` is already configured. Connect your GitHub repo and deploy.
-
-### Environment Variables
-Add `VITE_WEATHER_API_KEY` to your hosting platform's environment variables settings.
 
 ---
 
