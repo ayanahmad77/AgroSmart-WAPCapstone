@@ -26,7 +26,7 @@ export default function SoilSelector({ selected, onSelect, detectedSoil, soilLoa
         🪨 Soil Type
       </h2>
 
-      {/* Auto-detection status */}
+
       {soilLoading && (
         <motion.div
           initial={{ opacity: 0, y: -5 }}
@@ -117,7 +117,8 @@ export default function SoilSelector({ selected, onSelect, detectedSoil, soilLoa
               cursor: 'pointer',
             }}
           >
-            {/* Auto-detected badge */}
+
+
             {detectedSoil === soil.id && (
               <span
                 className="absolute -top-2 -right-2 text-xs font-body font-semibold px-2 py-0.5 rounded-full flex items-center gap-1"

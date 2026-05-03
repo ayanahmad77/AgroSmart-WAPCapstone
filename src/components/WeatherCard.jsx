@@ -23,7 +23,7 @@ export default function WeatherCard({ onFetch, weather, loading, error }) {
         🌤 Weather Conditions
       </h2>
 
-      {/* Search */}
+
       <form onSubmit={handleSubmit} className="flex gap-3 mb-6">
         <div className="relative flex-1">
           <MapPin
@@ -59,7 +59,7 @@ export default function WeatherCard({ onFetch, weather, loading, error }) {
         </button>
       </form>
 
-      {/* Error */}
+
       <AnimatePresence>
         {error && (
           <motion.div
@@ -74,7 +74,7 @@ export default function WeatherCard({ onFetch, weather, loading, error }) {
         )}
       </AnimatePresence>
 
-      {/* Weather Result */}
+
       <AnimatePresence mode="wait">
         {weather && (
           <motion.div
@@ -84,7 +84,7 @@ export default function WeatherCard({ onFetch, weather, loading, error }) {
             exit={{ opacity: 0, scale: 0.95 }}
             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           >
-            {/* City & temp header */}
+
             <div className="flex items-center justify-between mb-5 pb-5"
               style={{ borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
               <div>
@@ -106,7 +106,7 @@ export default function WeatherCard({ onFetch, weather, loading, error }) {
               </div>
             </div>
 
-            {/* Stats grid */}
+
             <div className="grid grid-cols-2 gap-3">
               {[
                 { icon: <Droplets size={15} />, label: 'Humidity', value: `${weather.humidity}%` },

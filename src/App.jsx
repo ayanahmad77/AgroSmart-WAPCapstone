@@ -1,36 +1,33 @@
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
-import { AnimatePresence } from 'framer-motion'
-import ErrorBoundary from './components/ErrorBoundary'
-import Navbar from './components/Navbar'
-import Footer from './components/Footer'
-import Home from './pages/Home'
-import Dashboard from './pages/Dashboard'
-import About from './pages/About'
-import NotFound from './pages/NotFound'
-import './index.css'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-function AnimatedRoutes() {
-  const location = useLocation()
-  return (
-    <AnimatePresence mode="wait">
-      <Routes location={location} key={location.pathname}>
-        <Route path="/" element={<Home />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/about" element={<About />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </AnimatePresence>
-  )
-}
+import ErrorBoundary from "./components/ErrorBoundary";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
-export default function App() {
+import Home from "./pages/Home";
+import Dashboard from "./pages/Dashboard";
+import About from "./pages/About";
+import NotFound from "./pages/NotFound";
+
+import "./index.css";
+
+function App() {
   return (
     <BrowserRouter>
       <ErrorBoundary>
         <Navbar />
-        <AnimatedRoutes />
+
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/about" element={<About />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+
         <Footer />
       </ErrorBoundary>
     </BrowserRouter>
-  )
+  );
 }
+
+export default App;

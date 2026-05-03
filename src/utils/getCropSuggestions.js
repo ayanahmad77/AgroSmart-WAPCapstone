@@ -1,37 +1,80 @@
-import { crops } from '../data/cropRules'
+import { crops } from "../data/cropRules";
 
-export function getCropSuggestions(weather, soilType) {
-  if (!weather || !soilType) return []
-
-  const { temp, humidity, condition } = weather
-  const conditionLower = condition.toLowerCase()
-
-  // Check which weather condition category it falls into
-  const getConditionType = (cond) => {
-    if (cond.includes('rain') || cond.includes('shower') || cond.includes('thunderstorm')) return 'rain'
-    if (cond.includes('drizzle')) return 'drizzle'
-    if (cond.includes('clear') || cond.includes('sunny')) return 'clear'
-    if (cond.includes('cloud') || cond.includes('overcast')) return 'clouds'
-    if (cond.includes('haze')) return 'haze'
-    if (cond.includes('mist') || cond.includes('fog')) return 'mist'
-    return 'clear'
+function getConditionType(condition) {
+  if (
+    condition.includes("rain") ||
+    condition.includes("shower") ||
+    condition.includes("thunderstorm")
+  ) {
+    return "rain";
   }
 
-  const condType = getConditionType(conditionLower)
+  if (condition.includes("drizzle")) {
+    return "drizzle";
+  }
 
-  const matched = crops
-    .map(crop => {
-      const soilMatch = crop.soils.includes(soilType)
-      const tempMatch = temp >= crop.minTemp && temp <= crop.maxTemp
-      const humidityMatch = humidity >= crop.minHumidity
-      const condMatch = crop.conditions.includes(condType)
+  if (condition.includes("clear") || condition.includes("sunny")) {
+    return "clear";
+  }
 
-      // Score: all 4 = perfect, 3 = good, 2 = borderline
-      const score = [soilMatch, tempMatch, humidityMatch, condMatch].filter(Boolean).length
-      return { ...crop, _score: score }
-    })
-    .filter(crop => crop._score >= 2)
+  if (condition.includes("cloud") || condition.includes("overcast")) {
+    return "clouds";
+  }
 
-  // Sort by score descending
-  return matched.sort((a, b) => b._score - a._score)
+  if (condition.includes("haze")) {
+    return "haze";
+  }
+
+  if (condition.includes("mist") || condition.includes("fog")) {
+    return "mist";
+  }
+
+  return "clear";
+}
+
+export function getCropSuggestions(weather, soilType) {
+  if (!weather || !soilType) {
+    return [];
+  }
+
+  let temp = weather.temp;
+  let humidity = weather.humidity;
+  let condition = weather.condition.toLowerCase();
+
+  let condType = getConditionType(condition);
+
+  let result = [];
+
+  for (let i = 0; i < crops.length; i++) {
+    let crop = crops[i];
+
+    let score = 0;
+
+    if (crop.soils.includes(soilType)) {
+      score++;
+    }
+
+    if (temp >= crop.minTemp && temp <= crop.maxTemp) {
+      score++;
+    }
+
+    if (humidity >= crop.minHumidity) {
+      score++;
+    }
+
+    if (crop.conditions.includes(condType)) {
+      score++;
+    }
+
+    if (score >= 2) {
+      let newCrop = { ...crop, score: score };
+      result.push(newCrop);
+    }
+  }
+
+  result.sort(function (a, b) {
+    return b.score - a.score;
+  });
+
+  return result;
 }
