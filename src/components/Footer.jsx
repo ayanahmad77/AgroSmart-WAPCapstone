@@ -23,16 +23,29 @@ export default function Footer() {
           Built with ❤️ as a capstone project — Helping farmers grow smarter.
         </p>
         <div className="flex gap-6">
-          {['/', '/dashboard', '/about'].map((path, i) => (
-            <Link
-              key={path}
-              to={path}
-              className="font-body text-sm transition-colors duration-200 hover:text-green-400"
-              style={{ color: 'rgba(226,232,240,0.4)' }}
-            >
-              {['Home', 'Dashboard', 'About'][i]}
-            </Link>
-          ))}
+          <Link
+            to="/"
+            className="font-body text-sm transition-colors duration-200 hover:text-green-400"
+            style={{ color: "rgba(226,232,240,0.4)" }}
+          >
+            Home
+          </Link>
+
+          <Link
+            to="/dashboard"
+            className="font-body text-sm transition-colors duration-200 hover:text-green-400"
+            style={{ color: "rgba(226,232,240,0.4)" }}
+          >
+            Dashboard
+          </Link>
+
+          <Link
+            to="/about"
+            className="font-body text-sm transition-colors duration-200 hover:text-green-400"
+            style={{ color: "rgba(226,232,240,0.4)" }}
+          >
+            About
+          </Link>
         </div>
       </div>
     </footer>

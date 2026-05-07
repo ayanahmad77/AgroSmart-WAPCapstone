@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion'
 import { Loader, Sparkles, AlertCircle } from 'lucide-react'
 
 const soils = [
@@ -28,9 +27,7 @@ export default function SoilSelector({ selected, onSelect, detectedSoil, soilLoa
 
 
       {soilLoading && (
-        <motion.div
-          initial={{ opacity: 0, y: -5 }}
-          animate={{ opacity: 1, y: 0 }}
+        <div
           className="flex items-center gap-2 mb-4 p-3 rounded-xl"
           style={{ background: 'rgba(74,222,128,0.08)', border: '1px solid rgba(74,222,128,0.15)' }}
         >
@@ -38,13 +35,11 @@ export default function SoilSelector({ selected, onSelect, detectedSoil, soilLoa
           <span className="font-body text-xs" style={{ color: '#4ade80' }}>
             Detecting soil type from location...
           </span>
-        </motion.div>
+        </div>
       )}
 
       {detectedSoil && !soilLoading && (
-        <motion.div
-          initial={{ opacity: 0, y: -5 }}
-          animate={{ opacity: 1, y: 0 }}
+        <div
           className="mb-4 p-3 rounded-xl"
           style={{ background: 'rgba(74,222,128,0.08)', border: '1px solid rgba(74,222,128,0.15)' }}
         >
@@ -81,13 +76,11 @@ export default function SoilSelector({ selected, onSelect, detectedSoil, soilLoa
           <p className="font-body text-xs mt-1.5" style={{ color: 'rgba(226,232,240,0.3)' }}>
             You can override by selecting a different soil below.
           </p>
-        </motion.div>
+        </div>
       )}
 
       {soilError && !soilLoading && (
-        <motion.div
-          initial={{ opacity: 0, y: -5 }}
-          animate={{ opacity: 1, y: 0 }}
+        <div
           className="flex items-start gap-2 mb-4 p-3 rounded-xl"
           style={{ background: 'rgba(251,191,36,0.08)', border: '1px solid rgba(251,191,36,0.15)' }}
         >
@@ -95,19 +88,14 @@ export default function SoilSelector({ selected, onSelect, detectedSoil, soilLoa
           <span className="font-body text-xs" style={{ color: '#fbbf24' }}>
             {soilError}
           </span>
-        </motion.div>
+        </div>
       )}
 
       <div className="grid grid-cols-2 gap-3">
-        {soils.map((soil, i) => (
-          <motion.button
+        {soils.map((soil) => (
+          <button
             key={soil.id}
             onClick={() => onSelect(soil.id)}
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: i * 0.06, duration: 0.4 }}
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.97 }}
             className={`p-4 rounded-xl text-left transition-all duration-200 relative ${selected === soil.id ? 'soil-selected' : ''}`}
             style={{
               background: selected === soil.id
@@ -135,7 +123,7 @@ export default function SoilSelector({ selected, onSelect, detectedSoil, soilLoa
             <div className="text-2xl mb-1">{soil.emoji}</div>
             <div className="font-display font-semibold text-sm" style={{ color: '#f1f5f9' }}>{soil.label}</div>
             <div className="font-body text-xs mt-0.5" style={{ color: 'rgba(226,232,240,0.5)' }}>{soil.desc}</div>
-          </motion.button>
+          </button>
         ))}
       </div>
     </div>

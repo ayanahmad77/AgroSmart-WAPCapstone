@@ -1,13 +1,6 @@
-import { motion } from 'framer-motion'
 import HeroSection from '../components/HeroSection'
 import { Leaf, CloudSun, BarChart3, ArrowRight } from 'lucide-react'
 import { Link } from 'react-router-dom'
-
-const pageVariants = {
-  initial: { opacity: 0, y: 20 },
-  animate: { opacity: 1, y: 0 },
-  exit: { opacity: 0, y: -20 },
-}
 
 const features = [
   {
@@ -32,26 +25,12 @@ const features = [
 
 export default function Home() {
   return (
-    <motion.div
-      className="page-wrapper"
-      variants={pageVariants}
-      initial="initial"
-      animate="animate"
-      exit="exit"
-      transition={{ duration: 0.4 }}
-    >
+    <div className="page-wrapper">
       <HeroSection />
 
-      {/* Features Section */}
       <section className="py-24 px-6">
         <div className="max-w-6xl mx-auto">
-          <motion.div
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
+          <div className="text-center mb-16">
             <h2
               className="font-display font-bold mb-4"
               style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', color: '#f1f5f9' }}
@@ -61,19 +40,14 @@ export default function Home() {
             <p className="font-body" style={{ color: 'rgba(226,232,240,0.5)', maxWidth: '480px', margin: '0 auto' }}>
               Three data points. Hundreds of combinations. One precise recommendation.
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {features.map((f, i) => (
-              <motion.div
+              <div
                 key={i}
                 className="glass-card rounded-2xl p-7"
                 style={{ border: '1px solid rgba(255,255,255,0.07)' }}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.12 }}
-                whileHover={{ y: -4, transition: { duration: 0.2 } }}
               >
                 <div
                   className="w-14 h-14 rounded-2xl flex items-center justify-center mb-5"
@@ -87,18 +61,12 @@ export default function Home() {
                 <p className="font-body text-sm" style={{ color: 'rgba(226,232,240,0.55)', lineHeight: 1.7 }}>
                   {f.desc}
                 </p>
-              </motion.div>
+              </div>
             ))}
           </div>
 
           {/* CTA */}
-          <motion.div
-            className="text-center mt-16"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-          >
+          <div className="text-center mt-16">
             <Link
               to="/dashboard"
               className="glow-btn inline-flex items-center gap-2 px-8 py-4 rounded-full font-body font-semibold text-base"
@@ -106,9 +74,9 @@ export default function Home() {
             >
               Try the Dashboard <ArrowRight size={18} />
             </Link>
-          </motion.div>
+          </div>
         </div>
       </section>
-    </motion.div>
+    </div>
   )
 }

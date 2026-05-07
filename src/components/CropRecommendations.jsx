@@ -1,4 +1,3 @@
-import { AnimatePresence } from 'framer-motion'
 import CropCard from './CropCard'
 import { Sprout, AlertCircle } from 'lucide-react'
 
@@ -50,13 +49,11 @@ export default function CropRecommendations({ crops, hasSearched }) {
           {crops.length} crops found
         </span>
       </div>
-      <AnimatePresence>
-        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
-          {crops.map((crop, i) => (
-            <CropCard key={crop.name} crop={crop} index={i} />
-          ))}
-        </div>
-      </AnimatePresence>
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
+        {crops.map((crop) => (
+          <CropCard key={crop.name} crop={crop} />
+        ))}
+      </div>
     </div>
   )
 }

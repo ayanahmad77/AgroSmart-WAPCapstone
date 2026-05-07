@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
 import { Search, Droplets, Wind, Eye, Gauge, MapPin, Loader } from 'lucide-react'
 
 export default function WeatherCard({ onFetch, weather, loading, error }) {
@@ -60,76 +59,63 @@ export default function WeatherCard({ onFetch, weather, loading, error }) {
       </form>
 
 
-      <AnimatePresence>
-        {error && (
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0 }}
-            className="mb-4 p-3 rounded-xl text-sm font-body"
-            style={{ background: 'rgba(248,113,113,0.1)', border: '1px solid rgba(248,113,113,0.2)', color: '#f87171' }}
-          >
-            {error}
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {error && (
+        <div
+          className="mb-4 p-3 rounded-xl text-sm font-body"
+          style={{ background: 'rgba(248,113,113,0.1)', border: '1px solid rgba(248,113,113,0.2)', color: '#f87171' }}
+        >
+          {error}
+        </div>
+      )}
 
 
-      <AnimatePresence mode="wait">
-        {weather && (
-          <motion.div
-            key={weather.city}
-            initial={{ opacity: 0, scale: 0.95, y: 10 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95 }}
-            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-          >
+      {weather && (
+        <div>
 
-            <div className="flex items-center justify-between mb-5 pb-5"
-              style={{ borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
-              <div>
-                <p className="font-display font-bold text-3xl" style={{ color: '#f1f5f9' }}>
-                  {weather.temp}°C
-                </p>
-                <p className="font-body text-sm mt-1" style={{ color: 'rgba(226,232,240,0.6)' }}>
-                  Feels like {weather.feelsLike}°C
-                </p>
-                <p className="font-body font-medium text-base mt-1 capitalize" style={{ color: '#4ade80' }}>
-                  {weather.condition}
-                </p>
-              </div>
-              <div className="text-right">
-                {iconUrl && <img src={iconUrl} alt={weather.condition} width={64} height={64} />}
-                <p className="font-body font-semibold text-sm" style={{ color: '#e2e8f0' }}>
-                  {weather.city}, {weather.country}
-                </p>
-              </div>
+          <div className="flex items-center justify-between mb-5 pb-5"
+            style={{ borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
+            <div>
+              <p className="font-display font-bold text-3xl" style={{ color: '#f1f5f9' }}>
+                {weather.temp}°C
+              </p>
+              <p className="font-body text-sm mt-1" style={{ color: 'rgba(226,232,240,0.6)' }}>
+                Feels like {weather.feelsLike}°C
+              </p>
+              <p className="font-body font-medium text-base mt-1 capitalize" style={{ color: '#4ade80' }}>
+                {weather.condition}
+              </p>
             </div>
+            <div className="text-right">
+              {iconUrl && <img src={iconUrl} alt={weather.condition} width={64} height={64} />}
+              <p className="font-body font-semibold text-sm" style={{ color: '#e2e8f0' }}>
+                {weather.city}, {weather.country}
+              </p>
+            </div>
+          </div>
 
 
-            <div className="grid grid-cols-2 gap-3">
-              {[
-                { icon: <Droplets size={15} />, label: 'Humidity', value: `${weather.humidity}%` },
-                { icon: <Wind size={15} />, label: 'Wind Speed', value: `${weather.wind} m/s` },
-                { icon: <Eye size={15} />, label: 'Visibility', value: `${weather.visibility} km` },
-                { icon: <Gauge size={15} />, label: 'Pressure', value: `${weather.pressure} hPa` },
-              ].map((stat, i) => (
-                <div
-                  key={i}
-                  className="flex items-center gap-3 p-3 rounded-xl"
-                  style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.06)' }}
-                >
-                  <div style={{ color: '#4ade80' }}>{stat.icon}</div>
-                  <div>
-                    <p className="font-body text-xs" style={{ color: 'rgba(226,232,240,0.5)' }}>{stat.label}</p>
-                    <p className="font-body font-semibold text-sm" style={{ color: '#e2e8f0' }}>{stat.value}</p>
-                  </div>
+          <div className="grid grid-cols-2 gap-3">
+            {[
+              { icon: <Droplets size={15} />, label: 'Humidity', value: `${weather.humidity}%` },
+              { icon: <Wind size={15} />, label: 'Wind Speed', value: `${weather.wind} m/s` },
+              { icon: <Eye size={15} />, label: 'Visibility', value: `${weather.visibility} km` },
+              { icon: <Gauge size={15} />, label: 'Pressure', value: `${weather.pressure} hPa` },
+            ].map((stat, i) => (
+              <div
+                key={i}
+                className="flex items-center gap-3 p-3 rounded-xl"
+                style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.06)' }}
+              >
+                <div style={{ color: '#4ade80' }}>{stat.icon}</div>
+                <div>
+                  <p className="font-body text-xs" style={{ color: 'rgba(226,232,240,0.5)' }}>{stat.label}</p>
+                  <p className="font-body font-semibold text-sm" style={{ color: '#e2e8f0' }}>{stat.value}</p>
                 </div>
-              ))}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
       {!weather && !loading && !error && (
         <div className="text-center py-8" style={{ color: 'rgba(226,232,240,0.3)' }}>
