@@ -1,4 +1,4 @@
-import HeroSection from '../components/HeroSection'
+import MainSection from '../components/MainSection'
 import { Leaf, CloudSun, BarChart3, ArrowRight } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
@@ -26,53 +26,56 @@ const features = [
 export default function Home() {
   return (
     <div className="page-wrapper">
-      <HeroSection />
 
-      <section className="py-24 px-6">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2
-              className="font-display font-bold mb-4"
-              style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', color: '#f1f5f9' }}
-            >
+      <MainSection />
+
+      <section className="home-section">
+
+        <div className="home-container">
+
+          <div className="home-top">
+
+            <h2 className="home-title">
               How It <span className="gradient-text">Works</span>
             </h2>
-            <p className="font-body" style={{ color: 'rgba(226,232,240,0.5)', maxWidth: '480px', margin: '0 auto' }}>
-              Three data points. Hundreds of combinations. One precise recommendation.
+
+            <p className="home-text">
+              Three data points. Hundreds of combinations.
+              One precise recommendation.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {features.map((f, i) => (
-              <div
-                key={i}
-                className="glass-card rounded-2xl p-7"
-                style={{ border: '1px solid rgba(255,255,255,0.07)' }}
-              >
+          <div className="home-grid">
+
+            {features.map((feature, index) => (
+              <div key={index} className="home-card glass-card">
+
                 <div
-                  className="w-14 h-14 rounded-2xl flex items-center justify-center mb-5"
-                  style={{ background: `${f.color}18`, color: f.color }}
+                  className="home-icon"
+                  style={{
+                    background: `${feature.color}18`,
+                    color: feature.color,
+                  }}
                 >
-                  {f.icon}
+                  {feature.icon}
                 </div>
-                <h3 className="font-display font-bold text-lg mb-3" style={{ color: '#f1f5f9' }}>
-                  {f.title}
+
+                <h3 className="home-card-title">
+                  {feature.title}
                 </h3>
-                <p className="font-body text-sm" style={{ color: 'rgba(226,232,240,0.55)', lineHeight: 1.7 }}>
-                  {f.desc}
+
+                <p className="home-card-text">
+                  {feature.desc}
                 </p>
               </div>
             ))}
           </div>
 
-          {/* CTA */}
-          <div className="text-center mt-16">
-            <Link
-              to="/dashboard"
-              className="glow-btn inline-flex items-center gap-2 px-8 py-4 rounded-full font-body font-semibold text-base"
-              style={{ color: '#0d1f1a' }}
-            >
-              Try the Dashboard <ArrowRight size={18} />
+          <div className="home-button-wrap">
+
+            <Link to="/dashboard" className="home-btn glow-btn">
+              Try the Dashboard
+              <ArrowRight size={18} />
             </Link>
           </div>
         </div>
