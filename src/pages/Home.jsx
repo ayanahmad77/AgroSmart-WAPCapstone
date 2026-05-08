@@ -15,12 +15,12 @@ const features = [
     title: 'Soil Analysis',
     desc: 'Select from 6 soil profiles — loamy, clay, sandy, silty, peaty, or chalky — for precise recommendations.',
   },
-  {
-    icon: <BarChart3 size={28} />,
-    color: '#fbbf24',
-    title: 'Smart Crop Matching',
-    desc: 'Rule-based logic cross-references weather + soil to suggest the best crops with match confidence scores.',
-  },
+ {
+  icon: <BarChart3 size={28} />,
+  color: '#22c55e',
+  title: 'AI Crop Intelligence',
+  desc: 'Advanced AI analyzes soil health, rainfall patterns, humidity, and temperature data to recommend the highest-yield crops with smart confidence scoring.',
+},
 ]
 
 export default function Home() {
