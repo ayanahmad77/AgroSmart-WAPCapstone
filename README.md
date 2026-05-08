@@ -163,6 +163,3 @@ This project is for educational purposes as part of a capstone submission.
 
 ---
 
-<p align="center">
-  Built with ❤️ — Helping farmers grow smarter.
-</p>
