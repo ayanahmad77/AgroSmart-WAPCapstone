@@ -62,75 +62,8 @@ export default function SoilSelector({ selected, onSelect, detectedSoil, soilLoa
         🪨 Soil Type
       </h2>
 
-      {soilLoading && (
-        <div className="soil-info-box soil-success">
-
-          <Loader size={14} className="animate-spin soil-info-icon" />
-
-          <span className="soil-info-text">
-            Detecting soil type from location...
-          </span>
-        </div>
-      )}
-
-      {detectedSoil && !soilLoading && (
-        <div className="soil-detected">
-
-          <div className="soil-detected-top">
-
-            <Sparkles size={13} className="soil-info-icon" />
-
-            <span className="soil-detected-label">
-              Auto-detected: {soils.find((s) => s.id === detectedSoil)?.label || detectedSoil}
-            </span>
-          </div>
-
-          {soilData && (
-            <div className="soil-data-list">
-
-              {soilData.clay != null && (
-                <span>
-                  Clay: {soilData.clay}%
-                </span>
-              )}
-
-              {soilData.sand != null && (
-                <span>
-                  Sand: {soilData.sand}%
-                </span>
-              )}
-
-              {soilData.silt != null && (
-                <span>
-                  Silt: {soilData.silt}%
-                </span>
-              )}
-
-              {soilData.ph != null && (
-                <span>
-                  pH: {soilData.ph}
-                </span>
-              )}
-            </div>
-          )}
-
-          <p className="soil-note">
-            You can override by selecting a different soil below.
-          </p>
-        </div>
-      )}
-
-      {soilError && !soilLoading && (
-        <div className="soil-info-box soil-warning">
-
-          <AlertCircle size={14} className="soil-warning-icon" />
-
-          <span className="soil-warning-text">
-            {soilError}
-          </span>
-        </div>
-      )}
-
+      
+      
       <div className="soil-grid">
 
         {soils.map((soil) => (
@@ -149,12 +82,7 @@ export default function SoilSelector({ selected, onSelect, detectedSoil, soilLoa
             }}
           >
 
-            {detectedSoil === soil.id && (
-              <span className="soil-badge">
-                <Sparkles size={9} />
-                Auto
-              </span>
-            )}
+            
 
             <div className="soil-emoji">
               {soil.emoji}

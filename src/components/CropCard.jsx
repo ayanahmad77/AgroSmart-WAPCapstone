@@ -1,12 +1,12 @@
 import { Calendar, CheckCircle2 } from 'lucide-react'
 
 export default function CropCard({ crop }) {
-  const matchScore = crop._score || 0
+  const matchScore = crop.score || 0
 
   const scoreLabel = matchScore === 4
-    ? 'Perfect Match'
+    ? 'Perfect'
     : matchScore === 3
-    ? 'Good Match'
+    ? 'Good'
     : 'Possible'
 
   const scoreColor = matchScore === 4

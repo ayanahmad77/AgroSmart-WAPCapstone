@@ -31,11 +31,7 @@ export default function Dashboard() {
     fetchWeather(city)
   }
 
-  useEffect(() => {
-    if (weather && weather.lat && weather.lon) {
-      fetchSoilType(weather.lat, weather.lon)
-    }
-  }, [weather])
+  
 
   function handleAnalyze() {
     if (!weather || !soilType) return

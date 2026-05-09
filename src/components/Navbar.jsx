@@ -34,7 +34,6 @@ export default function Navbar() {
           </span>
         </Link>
 
-        {/* Desktop Menu */}
 
         <div className="navbar-links">
 

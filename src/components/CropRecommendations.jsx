@@ -20,24 +20,7 @@ export default function CropRecommendations({ crops, hasSearched }) {
     )
   }
 
-  if (crops.length === 0) {
-    return (
-      <div className="recommend-box recommend-error glass-card">
 
-        <AlertCircle size={40} className="recommend-error-icon" />
-
-        <h3 className="recommend-error-title">
-          No Matches Found
-        </h3>
-
-        <p className="recommend-error-text">
-          The current weather and soil conditions don't match
-          our crop database. Try a different soil type or
-          check a nearby city.
-        </p>
-      </div>
-    )
-  }
 
   return (
     <div>
